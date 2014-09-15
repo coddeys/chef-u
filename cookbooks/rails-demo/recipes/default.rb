@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+include_recipe 'git'
+
 application "rails-demo" do
   path "/var/www/rails-apps/rails-demo"
   owner "vagrant"
