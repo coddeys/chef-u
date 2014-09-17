@@ -10,9 +10,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "opscode-ubuntu-14.04-i386"
-  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_ubuntu-14.04-i386_chef-provisionerless.box"
-  config.omnibus.chef_version = :latest
+  config.vm.box = "opscode-centos-6.5-i386"
+  config.vm.box_url = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.5-i386_chef-provisionerless.box"
+
+  config.omnibus.chef_version = 11.16
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
@@ -46,13 +47,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # backing providers for Vagrant. These expose provider-specific options.
   # Example for VirtualBox:
   #
-  # config.vm.provider "virtualbox" do |vb|
-  #   # Don't boot with headless mode
-  #   vb.gui = true
-  #
-  #   # Use VBoxManage to customize the VM. For example to change memory:
-  #   vb.customize ["modifyvm", :id, "--memory", "1024"]
-  # end
+  config.vm.define "centosn"
+  config.vm.provider "virtualbox" do |vb|
+    vb.name = "centosnew"
+    # Don't boot with headless mode
+    # vb.gui = true
+  
+    # Use VBoxManage to customize the VM. For example to change memory:
+    # vb.customize ["modifyvm", :id, "--memory", "1024"]
+  end
   #
   # View the documentation for the provider you're using for more
   # information on available options.
@@ -104,6 +107,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # The Opscode Platform uses HTTPS. Substitute your organization for
   # ORGNAME in the URL and validation key.
   #
+
+  config.vbguest.auto_update = true
+
   # If you have your own Chef Server, use the appropriate URL, which may be
   # HTTP instead of HTTPS depending on your configuration. Also change the
   # validation key to validation.pem.
@@ -112,7 +118,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     chef.chef_server_url = "https://api.opscode.com/organizations/coddeys"
     chef.validation_key_path = "./.chef/coddeys-validator.pem"
     chef.validation_client_name = "coddeys-validator"
-    chef.node_name = "coddeys-vm"
+    chef.node_name = "centos-vm"
   end
   #
   # If you're using the Opscode platform, your validator client is

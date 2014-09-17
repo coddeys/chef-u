@@ -13,4 +13,6 @@ application "rails-demo" do
   owner "vagrant"
   group "vagrant"
   repository "https://github.com/mulderp/chef-demo.git"
+
+  passenger_apache2
 end
