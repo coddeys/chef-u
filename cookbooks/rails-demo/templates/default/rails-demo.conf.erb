@@ -10,7 +10,7 @@
   <Directory /var/www/rails-apps/rails-demo/current/public>
   Options Indexes FollowSymLinks MultiViews
   AllowOverride None
-  Order allow, deny
+  Order allow,deny
   allow from all
   </Directory>
   ErrorLog <%= node['apache']['log_dir'] %>/demo-error.log
