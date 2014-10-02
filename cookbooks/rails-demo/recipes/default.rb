@@ -17,4 +17,5 @@ application "rails-demo" do
     bundler true
   end
   passenger_apache2
+
 end
